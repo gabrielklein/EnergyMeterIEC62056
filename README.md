@@ -4,6 +4,23 @@ This java based project collect data from a IEC 62056 Energy meter and broadcast
 
 Nothing more, no fancy features.
 
+# What can be extracted
+
+You can extract many informations from different energy meter without investing a lot of money.
+
+As example
+
+* Total power consumption
+* Current power consumption
+* Current amps and voltage
+* Current KW used
+* Power factor
+
+For a budget of about 50$ / 50€
+
+This information can then be sent to a MQTT server with this project.
+
+
 # Dependencies
 
 This project depends on the following libraries
