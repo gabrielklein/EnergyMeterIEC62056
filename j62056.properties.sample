@@ -1,0 +1,105 @@
+#
+# Configure this property file to setup the J62056 client.
+#
+
+
+# -----------------------------------------------------------------------------
+# Configure the general part
+# -----------------------------------------------------------------------------
+
+# Enable verbose mode to print debug messages to standard out.
+verbose=false
+
+
+# Sleep a few ms after a mqtt failure or a serial reading/writing failure
+sleep_fail=30000
+
+# Sleep between each reading
+sleep_loop=15000
+
+
+# -----------------------------------------------------------------------------
+# Configure the J62056 part
+# -----------------------------------------------------------------------------
+
+# The serial port used for communication. Examples are /dev/ttyUSB0 (Linux) or COM1 (Windows).
+j62056_serial_port=/dev/ttyUSB0
+
+# Delay of baud rate change in ms. USB to serial converters often require a delay of up to 250ms.
+j62056_baud_rate_change_delay=250
+
+# The timeout in ms.
+j62056_timeout=5000
+
+# Initial baud rate of the serial port.
+j62056_baud_rate=300
+
+
+# The device address that is sent with the request message
+j62056_device_address=
+
+# Set the request message start characters.
+j62056_request_start_character=/?
+
+
+# -----------------------------------------------------------------------------
+
+# MQTT configuration
+mqtt_host=10.0.0.60
+mqtt_port=1883
+# set it to nothing to avoid using it.
+mqtt_user=
+mqtt_password=
+
+# General topic for this meter
+mqtt_topic_general=/home/energy/meter/info
+
+
+
+
+# -----------------------------------------------------------------------------
+
+
+
+
+# Used to separate data when sent to the mqtt broker.
+mqtt_sep=|
+
+mqtt_number_format=%.2f
+
+# Define all the mqtt value and path to be extracted and sent.
+# You can find the available value by reading the log file (j62056.log)
+# Supported mqtt_path_0 to mqtt_path_99. You don't need to have something continuous (If you have mqtt_path_3,7,6 it's fine too).
+# If you have the following data, and the | separator
+#			"data set": {"address": "32.7.0", "value": "240", "unit": "V"},
+#			"data set": {"address": "52.7.0", "value": "230", "unit": "V"},
+#			"data set": {"address": "36.7.0", "value": "005.00", "unit": "kW"},
+#			"data set": {"address": "56.7.0", "value": "003.00", "unit": "kW"},
+#
+# Extra function
+# sign(x) is +1 is x is >= 0, otherwise -1
+
+
+# Total of the energy meter
+mqtt_topic_1=/home/energy/meter/total
+mqtt_mess_1={1.8.1} ; {1.8.2} ; {2.8.1} ; {2.8.2}
+
+# Total of the energy meter
+mqtt_topic_2=/home/energy/meter/volts
+mqtt_mess_2=({32.7.0}+{52.7.0}+{72.7.0})/3 ; {32.7.0} ; {52.7.0} ; {72.7.0}
+
+mqtt_topic_3=/home/energy/meter/amps
+mqtt_mess_3=({31.7.0}+{51.7.0}+{71.7.0}) ; {31.7.0} ; {51.7.0} ; {71.7.0}
+
+mqtt_topic_4=/home/energy/meter/kws
+mqtt_mess_4=sign({33.7.0})*{36.7.0}+sign({53.7.0})*{56.7.0}+sign({73.7.0})*{76.7.0} ; sign({33.7.0})*{36.7.0} ; sign({53.7.0})*{56.7.0} ; sign({73.7.0})*{76.7.0}
+
+mqtt_topic_5=/home/energy/meter/powfactors
+mqtt_mess_5={33.7.0} ; {53.7.0} ; {73.7.0}
+
+
+
+# mqtt_topic_99 MAXIMUM
+# mqtt_mess_99 MAXIMUM
+
+
