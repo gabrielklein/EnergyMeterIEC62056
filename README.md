@@ -62,11 +62,11 @@ Just install maven on your computer and run
 You should have some important files
 > target/EnergyMeter.jar
 
-> target/extra-libs/xp4j-0.4.8.jar
+> target/extra-libs/exp4j-0.4.8.jar
 
-> target/extra-libs/j62056-2.1.0.jar
+> target/extra-libs/j62056-2.2.0.jar
 
-> target/extra-libs/jrxtx-1.0.0.jar
+> target/extra-libs/jrxtx-1.0.1.jar
 
 > target/extra-libs/mqtt-client-0.4.0.jar
 
@@ -76,24 +76,32 @@ These files are all you need.
 
 It's similar to the next section :)
 
+# Tested environment
+
+I use a Raspberry Pi 3 Model B Rev 1.2
+
+> PRETTY_NAME="Raspbian GNU/Linux 11 (bullseye)"
+
+> NAME="Raspbian GNU/Linux"
+
+> VERSION_ID="11"
+
+> VERSION="11 (bullseye)"
+
+
 # Setup a raspberry to start to collect energy data
 
-You need first to install a linux environment on the raspberry
+You need first to install a linux environment on the raspberry.
 
 Then install some libraries and java
 > sudo apt-get install librxtx-java
 
-> sudo apt-get update & sudo apt-get install openjdk-7-jre-headless librxtx-java
+> sudo apt-get update
+
+> sudo apt-get install openjdk-17-jdk  openjdk-17-jre librxtx-java
 
 You may be interested to add the user that will run this program to "dialout"
-> sudo adduser gabriel dialout
-
-You may need to copy all files in
-> /usr/lib/jni
-
-To
-
-> /usr/lib
+> sudo adduser yourname dialout
 
 I suggest to shutdown the HDMI interface to lower a bit the energy usage (should be done at every restart)
 > /usr/bin/tvservice -o
@@ -104,11 +112,6 @@ Copy on your target computer the jar of this project
 And all files in
 > target/extra-libs/*
 
-First run the part that collect data from your energy meter until it works
-> java -cp "j62056-2.1.0.jar:jrxtx-1.0.0.EnergyMeter.jar" org.openmuc.j62056.app.Reader -p /dev/ttyUSB0 -d 250 -v 
-
-You should see a dump of the data that could be collected from your energy meter. If this dump is too slow, you may have issues having "real time" data.
-
 Copy
 >j62056.properties.sample
 
@@ -117,12 +120,10 @@ To
 
 And configure this file to fit your environment.
 
-If you don't know yet how to configure mqtt\_mess_*, just leave if like that.
-
 Create a start.sh that contain
 > cd /home/whereyourscriptislocated
 
-> java -cp "exp4j-0.4.8.jar:j62056-2.1.0.jar:jrxtx-1.0.0.jar:mqtt-client-0.4.0.jar:EnergyMeter.jar" ch.nuage.energymeter.Main >/tmp/EnergyMeter.log
+> java -cp "target/extra-libs/exp4j-0.4.8.jar:target/extra-libs/j62056-2.2.0.jar:target/extra-libs/jrxtx-1.0.1.jar:target/extra-libs/mqtt-client-0.4.0.jar:target/EnergyMeter.jar" ch.nuage.energymeter.Main
 
 Don't forget to make it executable :)
 > chmod 755 ./start.sh

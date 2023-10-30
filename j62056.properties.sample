@@ -98,6 +98,62 @@ mqtt_topic_5=/home/energy/meter/powfactors
 mqtt_mess_5={33.7.0} ; {53.7.0} ; {73.7.0}
 
 
+mqtt_topic_6=/home/energy/meter/total/1
+mqtt_mess_6={1.8.1}
+
+mqtt_topic_7=/home/energy/meter/total/2
+mqtt_mess_7={1.8.2}
+
+mqtt_topic_8=/home/energy/meter/total/3
+mqtt_mess_8={2.8.1}
+
+mqtt_topic_9=/home/energy/meter/total/4
+mqtt_mess_9={2.8.2}
+
+mqtt_topic_10=/home/energy/meter/volts/0
+mqtt_mess_10=({32.7.0}+{52.7.0}+{72.7.0})/3
+
+mqtt_topic_11=/home/energy/meter/volts/1
+mqtt_mess_11={32.7.0}
+
+mqtt_topic_12=/home/energy/meter/volts/2
+mqtt_mess_12={52.7.0}
+
+mqtt_topic_13=/home/energy/meter/volts/3
+mqtt_mess_13={72.7.0}
+
+mqtt_topic_14=/home/energy/meter/amps/0
+mqtt_mess_14=({31.7.0}+{51.7.0}+{71.7.0})
+
+mqtt_topic_15=/home/energy/meter/amps/1
+mqtt_mess_15={31.7.0}
+
+mqtt_topic_16=/home/energy/meter/amps/2
+mqtt_mess_16={51.7.0}
+
+mqtt_topic_17=/home/energy/meter/amps/3
+mqtt_mess_17={71.7.0}
+
+mqtt_topic_18=/home/energy/meter/kws/0
+mqtt_mess_18=sign({33.7.0})*{36.7.0}+sign({53.7.0})*{56.7.0}+sign({73.7.0})*{76.7.0}
+
+mqtt_topic_19=/home/energy/meter/kws/1
+mqtt_mess_19=sign({33.7.0})*{36.7.0}
+
+mqtt_topic_20=/home/energy/meter/kws/2
+mqtt_mess_20=sign({53.7.0})*{56.7.0}
+
+mqtt_topic_21=/home/energy/meter/kws/3
+mqtt_mess_21=sign({73.7.0})*{76.7.0}
+
+mqtt_topic_22=/home/energy/meter/powfactors/1
+mqtt_mess_22={33.7.0}
+
+mqtt_topic_23=/home/energy/meter/powfactors/2
+mqtt_mess_23={53.7.0}
+
+mqtt_topic_24=/home/energy/meter/powfactors/3
+mqtt_mess_24={73.7.0}
 
 # mqtt_topic_99 MAXIMUM
 # mqtt_mess_99 MAXIMUM
